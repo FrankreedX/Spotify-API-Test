@@ -12,8 +12,8 @@ app.use(express.static(__dirname + '/public'));
 
 var request = require('request'); // "Request" library
 
-var client_id = ''; // Your client id
-var client_secret = ''; // Your secret
+var client_id = '09b2984f748247b7bcad4e504cd7a65c'; // Your client id
+var client_secret = '4902813f323d40f48da01f88fed2ff17'; // Your secret
 
 // your application requests authorization
 var authOptions = {
@@ -40,12 +40,17 @@ app.get('/connor',(req,res) => {
         },
         json: true
       };
-      request.get(options, function(error, response, body) {
-        console.log(JSON.stringify(body));
-        res.write(JSON.stringify(body));
+      request.get(options, function(error, response, bod) {
+        // console.log(bod);
+        // res.write(JSON.stringify(bod));
+        res.send(JSON.stringify(bod));
       });
     }
   });
+});
+
+app.get('/test', (req, res)=>{
+  res.send("heloo")
 });
 
 console.log('Listening on 3777');

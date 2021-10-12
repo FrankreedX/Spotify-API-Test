@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <title>test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     <script>
         function httpGetAsync() {
-            $.get("http://localhost:3777/connor", function (data, status) {
-                console.log("Data: " + data + " status: " + status);
-                return data;
+            console.log("click")
+            $.get("http://localhost:3777/connor", function (data) {
+                var deStringed = JSON.parse(data);
+                console.log(deStringed);
+                document.getElementById("Name").innerHTML = deStringed.display_name;
+                return 0;
             });
         }
     </script>
 </head>
 <body>
-    <a class="Connor" href="#" onclick="httpGetAsync()">click me</a>
+<div>
+    Name: <p id="Name">John Doe</p>
+</div>
+    <button class="Connor" href="#" onclick="httpGetAsync()">click me</button>
 </body>
 </html>
