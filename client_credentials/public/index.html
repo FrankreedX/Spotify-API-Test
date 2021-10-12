@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        function httpGetAsync() {
+            $.get("http://localhost:3777/connor", function (data, status) {
+                console.log("Data: " + data + " status: " + status);
+                return data;
+            });
+        }
+    </script>
+</head>
+<body>
+    <a class="Connor" href="#" onclick="httpGetAsync()">click me</a>
+</body>
+</html>
