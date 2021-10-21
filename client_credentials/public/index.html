@@ -4,23 +4,39 @@
     <meta charset="UTF-8">
     <title>test</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="style.css" rel="stylesheet">
     <script>
         function httpGetAsync() {
-            console.log("click")
-            $.get("http://localhost:3777/connor", function (data) {
-                var deStringed = JSON.parse(data);
-                console.log(deStringed);
-                document.getElementById("Name").innerHTML = deStringed.display_name;
-                return 0;
-            });
+            var searchString = document.getElementById("search").value
+
+            $.post("http://localhost:3777/search/" + searchString, function (data) {
+                //data received
+                console.log(data)
+            })
+
+            // $.get("http://localhost:3777/search/" + searchString, function (data) {
+            //     var deStringed = JSON.parse(data);
+            //     console.log(deStringed);
+            //     document.getElementById("Name").innerHTML = deStringed.display_name;
+            //     document.getElementById("URL").href = deStringed.external_urls.spotify;
+            //     document.getElementById("URL").innerHTML = deStringed.external_urls.spotify;
+            //     return 0;
+            // });
         }
     </script>
 </head>
 <body>
+
+<form>
+    <label for="search">Search for name: </label>
+    <input id="search" name="search" type="text">
+</form>
+
 <div>
+
     Name: <p id="Name">John Doe</p>
+    URL: <a href="#" id="URL">example.com</a>
 </div>
-    <button class="Connor" href="#" onclick="httpGetAsync()">click me</button>
+<button class="search_button" onclick="httpGetAsync()">click me</button>
 </body>
 </html>
