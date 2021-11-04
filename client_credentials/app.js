@@ -1,12 +1,3 @@
-/**
- * This is an example of a basic node.js script that performs
- * the Client Credentials oAuth2 flow to authenticate against
- * the Spotify Accounts.
- *
- * For more information, read
- * https://developer.spotify.com/web-api/authorization-guide/#client_credentials_flow
- */
-
 function httpPost(url, res) {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
@@ -50,6 +41,13 @@ var authOptions = {
 
 app.post('/search/:q', (req, res) => {
     httpPost('https://api.spotify.com/v1/search?q=' + req.params.q + '&type=artist&limit=1', res)
+})
+
+app.post('/recommend/:q', (req, res) => {
+    // console.log(res.json({requestBody: req.body}));
+    let text = Buffer.from(req.params.q, 'base64').toString();
+    console.log("Sending URL: ", `https://api.spotify.com/v1/recommendations?${text}`)
+    httpPost(`https://api.spotify.com/v1/recommendations?${text}`, res)
 })
 
 app.get('/connor', (req, res) => {

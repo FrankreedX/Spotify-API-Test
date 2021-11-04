@@ -7,29 +7,121 @@
     <link href="style.css" rel="stylesheet">
     <script>
         function httpGetAsync() {
-            var searchString = document.getElementById("search").value
+            let values = []
 
-            $.post("http://localhost:3777/search/" + searchString, function (data) {
+            const input_dom = document.getElementById("pain").getElementsByTagName("input");
+
+            for (let i = 0; i < input_dom.length; i++) {
+                if (input_dom[i].value.length > 0)
+                    values.push(`${input_dom[i].getAttribute("id")}=${input_dom[i].value}`)
+            }
+
+            let sending_value = values.join("&")
+
+            console.log(values.join("&"));
+
+            $.post(`http://localhost:3777/recommend/${btoa(sending_value)}`, function (data) {
                 //data received
                 console.log(data)
             })
-
-            // $.get("http://localhost:3777/search/" + searchString, function (data) {
-            //     var deStringed = JSON.parse(data);
-            //     console.log(deStringed);
-            //     document.getElementById("Name").innerHTML = deStringed.display_name;
-            //     document.getElementById("URL").href = deStringed.external_urls.spotify;
-            //     document.getElementById("URL").innerHTML = deStringed.external_urls.spotify;
-            //     return 0;
-            // });
         }
     </script>
 </head>
 <body>
 
-<form>
-    <label for="search">Search for name: </label>
-    <input id="search" name="search" type="text">
+<form id="pain">
+    <label for="seed_artists">seed artists: </label>
+    <input id="seed_artists" name="seed_artists" type="text">
+    <br>
+    <label for="seed_genres">seed genres: </label>
+    <input id="seed_genres" name="seed_genres" type="text">
+    <br>
+    <label for="seed_tracks">seed tracks: </label>
+    <input id="seed_tracks" name="seed_tracks" type="text">
+    <br>
+    <label for="limit">limit: </label>
+    <input id="limit" name="limit" type="text">
+    <br>
+    <label for="max_acousticness">max_acousticness: </label>
+    <input id="max_acousticness" name="max_acousticness" type="text">
+    <br>
+    <label for="max_danceability">max_danceability: </label>
+    <input id="max_danceability" name="max_danceability" type="text">
+    <br>
+    <label for="max_duration_ms">max_duration_ms: </label>
+    <input id="max_duration_ms" name="max_duration_ms" type="text">
+    <br>
+    <label for="max_energy">max_energy: </label>
+    <input id="max_energy" name="max_energy" type="text">
+    <br>
+    <label for="max_instrumentalness">max_instrumentalness: </label>
+    <input id="max_instrumentalness" name="max_instrumentalness" type="text">
+    <br>
+    <label for="max_key">max_key: </label>
+    <input id="max_key" name="max_key" type="text">
+    <br>
+    <label for="max_liveness">max_liveness: </label>
+    <input id="max_liveness" name="max_liveness" type="text">
+    <br>
+    <label for="max_loudness">max_loudness: </label>
+    <input id="max_loudness" name="max_loudness" type="text">
+    <br>
+    <label for="max_mode">max_mode: </label>
+    <input id="max_mode" name="max_mode" type="text">
+    <br>
+    <label for="max_popularity">max_popularity: </label>
+    <input id="max_popularity" name="max_popularity" type="text">
+    <br>
+    <label for="max_speechiness">max_speechiness: </label>
+    <input id="max_speechiness" name="max_speechiness" type="text">
+    <br>
+    <label for="max_tempo">max_tempo: </label>
+    <input id="max_tempo" name="max_tempo" type="text">
+    <br>
+    <label for="max_time_signature">max_time_signature: </label>
+    <input id="max_time_signature" name="max_time_signature" type="text">
+    <br>
+    <label for="max_valence">max_valence: </label>
+    <input id="max_valence" name="max_valence" type="text">
+    <br>
+    <label for="min_acousticness">min_acousticness: </label>
+    <input id="min_acousticness" name="min_acousticness" type="text">
+    <br>
+    <label for="min_danceability">min_danceability: </label>
+    <input id="min_danceability" name="min_danceability" type="text">
+    <br>
+    <label for="min_duration_ms">min_duration_ms: </label>
+    <input id="min_duration_ms" name="min_duration_ms" type="text">
+    <br>
+    <label for="min_energy">min_energy: </label>
+    <input id="min_energy" name="min_energy" type="text">
+    <br>
+    <label for="min_instrumentalness">min_instrumentalness: </label>
+    <input id="min_instrumentalness" name="min_instrumentalness" type="text">
+    <br>
+    <label for="min_key">min_key: </label>
+    <input id="min_key" name="min_key" type="text">
+    <br>
+    <label for="min_liveness">min_liveness: </label>
+    <input id="min_liveness" name="min_liveness" type="text">
+    <br>
+    <label for="min_loudness">min_loudness: </label>
+    <input id="min_loudness" name="min_loudness" type="text">
+    <br>
+    <label for="min_mode">min_mode: </label>
+    <input id="min_mode" name="min_mode" type="text">
+    <br>
+    <label for="min_popularity">min_popularity: </label>
+    <input id="min_popularity" name="min_popularity" type="text">
+    <br>
+    <label for="min_speechiness">min_speechiness: </label>
+    <input id="min_speechiness" name="min_speechiness" type="text">
+    <br>
+    <label for="min_tempo">min_tempo: </label>
+    <input id="min_tempo" name="min_tempo" type="text">
+    <br>
+    <label for="min_time_signature">min_time_signature: </label>
+    <input id="min_time_signature" name="min_time_signature" type="text">
 </form>
 
 <div>
